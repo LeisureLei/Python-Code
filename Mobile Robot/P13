@@ -1,3 +1,4 @@
+method1：
 def compMean(l):
     return float(sum(l))/len(l)
 def compVariance(l):
@@ -13,3 +14,25 @@ sigma2 = compVariance(l)
 print 'The Expectation / Mean: %.1f \n'%(mu)
 print 'The Variance is: %.1f \n'%(sigma2)
 print 'The Standard Deviation is: %.1f'%(math.sqrt(sigma2))
+
+method2:
+def compound(Xwa,Xab):
+    Xwb = mat([0.0,0.0,0.0])
+    Xwa[2] = math.radians(Xwa[2])
+    Xab[2] = math.radians(Xab[2])
+    angle = Xwa[2] + Xab[2]
+    Xwa = mat(Xwa);Xab = mat(Xab)
+    rot = mat([[math.cos(Xwa[0,2]),-math.sin(Xwa[0,2])],[math.sin(Xwa[0,2]),math.cos(Xwa[0,2])]])
+    Xwb[0,0:2] = (rot*Xab[0,0:2].T + Xwa[0,0:2].T).T
+    if angle > math.pi:
+	    Xwb[0,2] = angle - 2*math.pi
+    if angle < -math.pi:
+	    Xwb[0,2] = angle + 2*math.pi
+    Xwb[0,2] = angle*180.0/math.pi
+    print 'Xwb is (%.2fm,%.2fm,%.2fdegree)'%(Xwb[0,0],Xwb[0,1],Xwb[0,2])
+
+import math
+from numpy import mat
+Xwa = [5,3,50]
+Xab = [4,2,20]
+compound(Xwa,Xab)
