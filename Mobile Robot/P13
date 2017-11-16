@@ -1,0 +1,15 @@
+def compMean(l):
+    return float(sum(l))/len(l)
+def compVariance(l):
+    d=[]
+    for i in range(0,len(l)-1):
+        d.append((l[i]-compMean(l))**2)
+    return sum(d)/float(len(l))
+
+import math
+l = [7, 38, 4, 23, 18]
+mu = compMean(l)
+sigma2 = compVariance(l)
+print 'The Expectation / Mean: %.1f \n'%(mu)
+print 'The Variance is: %.1f \n'%(sigma2)
+print 'The Standard Deviation is: %.1f'%(math.sqrt(sigma2))
